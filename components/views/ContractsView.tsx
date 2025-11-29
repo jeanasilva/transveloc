@@ -6,14 +6,21 @@ import { GlassCard } from '@/components/ui/GlassCard';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockContracts } from '@/lib/mockData';
 
-export const ContractsView: React.FC = () => (
+interface ContractsViewProps {
+  onOpenModal: (modal: string) => void;
+}
+
+export const ContractsView: React.FC<ContractsViewProps> = ({ onOpenModal }) => (
   <div className="space-y-6 animate-in fade-in duration-500">
     <div className="flex justify-between items-end">
       <div>
         <h2 className="text-3xl font-bold text-slate-800 tracking-tight">Contratos & Clientes</h2>
         <p className="text-slate-500 mt-1">Gerencie vencimentos, documentos e faturamento.</p>
       </div>
-      <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 shadow-lg shadow-indigo-200">
+      <button 
+        onClick={() => onOpenModal('contract')}
+        className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 shadow-lg shadow-indigo-200"
+      >
         <Plus size={16} /> Novo Contrato
       </button>
     </div>

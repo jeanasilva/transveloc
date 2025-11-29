@@ -6,14 +6,21 @@ import { GlassCard } from '@/components/ui/GlassCard';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockVehicles } from '@/lib/mockData';
 
-export const FleetView: React.FC = () => (
+interface FleetViewProps {
+  onOpenModal: (modal: string) => void;
+}
+
+export const FleetView: React.FC<FleetViewProps> = ({ onOpenModal }) => (
   <div className="space-y-6 animate-in fade-in duration-500">
     <div className="flex justify-between items-end">
       <div>
         <h2 className="text-3xl font-bold text-slate-800 tracking-tight">Gestão de Frota</h2>
         <p className="text-slate-500 mt-1">Controle de manutenção, consumo e disponibilidade.</p>
       </div>
-      <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 shadow-lg shadow-indigo-200">
+      <button 
+        onClick={() => onOpenModal('vehicle')}
+        className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 shadow-lg shadow-indigo-200"
+      >
         <Plus size={16} /> Adicionar Veículo
       </button>
     </div>

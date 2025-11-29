@@ -15,9 +15,11 @@ interface HeaderProps {
   setSidebarOpen: (open: boolean) => void;
   activeTab: string;
   tabs: Tab[];
+  onLogout?: () => void;
+  userRole?: 'admin' | 'client';
 }
 
-export const Header: React.FC<HeaderProps> = ({ isSidebarOpen, setSidebarOpen, activeTab, tabs }) => {
+export const Header: React.FC<HeaderProps> = ({ isSidebarOpen, setSidebarOpen, activeTab, tabs, onLogout, userRole = 'admin' }) => {
   const currentTab = tabs.find(t => t.id === activeTab);
 
   return (
@@ -47,7 +49,11 @@ export const Header: React.FC<HeaderProps> = ({ isSidebarOpen, setSidebarOpen, a
           />
         </div>
         <IconButton icon={Bell} />
-        <IconButton icon={LogOut} className="hover:text-rose-600 hover:bg-rose-50" />
+        <IconButton 
+          icon={LogOut} 
+          onClick={onLogout}
+          className="hover:text-rose-600 hover:bg-rose-50" 
+        />
       </div>
     </header>
   );

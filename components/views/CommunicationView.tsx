@@ -5,7 +5,11 @@ import { Smartphone, CheckCircle2, Users, Clock, Share2 } from 'lucide-react';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { mockCommunications } from '@/lib/mockData';
 
-export const CommunicationView: React.FC = () => (
+interface CommunicationViewProps {
+  onOpenModal: (modal: string) => void;
+}
+
+export const CommunicationView: React.FC<CommunicationViewProps> = ({ onOpenModal }) => (
   <div className="space-y-6 animate-in fade-in duration-500">
     <div className="flex flex-col md:flex-row justify-between items-end gap-4">
       <div>
@@ -13,7 +17,10 @@ export const CommunicationView: React.FC = () => (
         <p className="text-slate-500 mt-1">Histórico de alertas e mensagens automáticas enviadas aos clientes.</p>
       </div>
       <div className="flex gap-2">
-        <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-xl text-sm font-medium hover:bg-green-700 shadow-lg shadow-green-200">
+        <button 
+          onClick={() => onOpenModal('whatsapp')}
+          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-xl text-sm font-medium hover:bg-green-700 shadow-lg shadow-green-200"
+        >
           <Smartphone size={16} /> Disparo Manual
         </button>
       </div>

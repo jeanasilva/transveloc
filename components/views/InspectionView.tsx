@@ -12,7 +12,11 @@ interface Zone {
   status: 'ok' | 'avaria';
 }
 
-export const InspectionView: React.FC = () => {
+interface InspectionViewProps {
+  onOpenModal: (modal: string) => void;
+}
+
+export const InspectionView: React.FC<InspectionViewProps> = ({ onOpenModal }) => {
   const [selectedZone, setSelectedZone] = useState<Zone | null>(null);
 
   const zones: Zone[] = [
@@ -35,7 +39,10 @@ export const InspectionView: React.FC = () => {
           <button className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-600 rounded-xl text-sm font-medium hover:bg-slate-50">
             <Filter size={16} /> Histórico
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 shadow-lg shadow-indigo-200">
+          <button 
+            onClick={() => onOpenModal('inspection')}
+            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 shadow-lg shadow-indigo-200"
+          >
             <Plus size={16} /> Nova Vistoria
           </button>
         </div>
@@ -204,7 +211,12 @@ export const InspectionView: React.FC = () => {
               </h4>
               <div className="h-32 bg-white border-2 border-dashed border-slate-300 rounded-xl flex items-center justify-center cursor-crosshair hover:bg-slate-50 transition-colors mb-4 relative">
                 <p className="text-slate-300 text-sm select-none">Área de Assinatura (Toque ou Mouse)</p>
-                <XCircle className="absolute bottom-2 right-2 text-slate-300 hover:text-red-400 cursor-pointer" size={20} title="Limpar" />
+                <button 
+                  className="absolute bottom-2 right-2 text-slate-300 hover:text-red-400 cursor-pointer"
+                  aria-label="Limpar"
+                >
+                  <XCircle size={20} />
+                </button>
               </div>
 
               <div className="flex justify-end gap-3">

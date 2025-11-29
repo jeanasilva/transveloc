@@ -6,6 +6,7 @@ interface IconButtonProps {
   onClick?: () => void;
   active?: boolean;
   className?: string;
+  title?: string;
 }
 
 export const IconButton: React.FC<IconButtonProps> = ({ 

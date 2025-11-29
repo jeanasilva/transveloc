@@ -3,7 +3,8 @@ import {
   Users, 
   FileText, 
   MapPin, 
-  Wrench 
+  Wrench,
+  Package
 } from 'lucide-react';
 
 export interface Stat {
@@ -62,6 +63,14 @@ export interface Inspection {
   inspector: string;
 }
 
+export interface Billing {
+  id: string;
+  client: string;
+  amount: string;
+  due: string;
+  status: string;
+}
+
 export const mockStats: Stat[] = [
   { label: "Receita Mensal", value: "R$ 482k", trend: "+12.5%", isPositive: true, icon: FileText, color: "text-indigo-600 bg-indigo-50" },
   { label: "Veículos Ativos", value: "142", trend: "+4", isPositive: true, icon: Truck, color: "text-emerald-600 bg-emerald-50" },
@@ -93,5 +102,42 @@ export const mockCommunications: Communication[] = [
 export const mockInspections: Inspection[] = [
   { id: 'VST-2024-88', date: '25/11/2024', vehicle: 'ABC-1234', type: 'Entrega (Saída)', status: 'Aprovado', inspector: 'M. Souza' },
   { id: 'VST-2024-89', date: '25/11/2024', vehicle: 'XYZ-9876', type: 'Devolução (Chegada)', status: 'Com Avaria', inspector: 'R. Lima' },
+];
+
+export const mockBilling: Billing[] = [
+  { id: 'FAT-2024-001', client: 'Logística Express', amount: 'R$ 15.400,00', due: '15/12/2024', status: 'Pendente' },
+  { id: 'FAT-2024-002', client: 'Supermercados Ideal', amount: 'R$ 8.250,00', due: '10/12/2024', status: 'Pago' },
+  { id: 'FAT-2024-003', client: 'Construtora Forte', amount: 'R$ 22.000,00', due: '01/12/2024', status: 'Atrasado' },
+];
+
+export interface ClientStat {
+  label: string;
+  value: string;
+  trend: string;
+  isPositive: boolean;
+  icon: typeof Truck;
+  color: string;
+}
+
+export interface ClientOrder {
+  id: string;
+  origin: string;
+  dest: string;
+  status: string;
+  vehicle: string;
+  eta: string;
+  items: string;
+}
+
+export const mockClientStats: ClientStat[] = [
+  { label: "Pedidos em Trânsito", value: "3", trend: "Chegada Hoje", isPositive: true, icon: Truck, color: "text-blue-600 bg-blue-50" },
+  { label: "Faturas em Aberto", value: "R$ 15.4k", trend: "Vence em 5 dias", isPositive: false, icon: FileText, color: "text-orange-600 bg-orange-50" },
+  { label: "Entregas no Mês", value: "12", trend: "+2 vs mês ant.", isPositive: true, icon: Package, color: "text-emerald-600 bg-emerald-50" },
+];
+
+export const mockClientOrders: ClientOrder[] = [
+  { id: 'PED-9901', origin: 'São Paulo, SP', dest: 'Rio de Janeiro, RJ', status: 'Em Transito', vehicle: 'ABC-1234', eta: 'Hoje, 18:00', items: 'Eletrônicos' },
+  { id: 'PED-9855', origin: 'Curitiba, PR', dest: 'São Paulo, SP', status: 'Entregue', vehicle: 'GHI-9012', eta: '27/11/2024', items: 'Peças Automotivas' },
+  { id: 'PED-1002', origin: 'Campinas, SP', dest: 'Belo Horizonte, MG', status: 'Pendente', vehicle: '---', eta: 'Aguardando Coleta', items: 'Móveis' },
 ];
 
